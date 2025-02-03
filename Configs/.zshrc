@@ -12,3 +12,38 @@
 
 #  This is your file 
 # Add your configurations here
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/wanted/.dart-cli-completion/zsh-config.zsh ]] && . /home/wanted/.dart-cli-completion/zsh-config.zsh || true
+source <(fzf --zsh)
+
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf "$@" --preview 'tree -C {} | head -200' ;;
+    *)            fzf "$@" ;;
+  esac
+}
+
+## [/Completion]
+
+# Autostart tmux
+# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#  exec tmux
+# fi
+
+export PATH=$PATH:/home/wanted/.spicetify
+export GPG_TTY=$(tty)
+export PATH=$HOME/.local/bin:$PATH
+
+
+# zoxide
+eval "$(zoxide init zsh)"
+
+
+# kitty
+
+#alias nvim='~/.config/nvim/kitty.sh'
